@@ -41,7 +41,7 @@ function App() {
         const signer = provider.getSigner();
         const fundrasingContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        let projectname = await fundrasingContract.projectname();
+        let projectname = await fundrasingContract.projectname;
         projectname = utils.parseBytes32String(projectname);
         setprojectname(projectname.toString());
       } else {
@@ -83,7 +83,7 @@ function App() {
         const signer = provider.getSigner();
         const fundrasingContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        let owner = "0xBB7E6C0C2ab85F2e2a5571ba73a3D0A5d08A7C56";
+        let owner = "0xDD52f07BbB4f634e41FFca2b943301702a388d52";
         setownerAddress(owner);
 
         const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
