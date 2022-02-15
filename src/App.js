@@ -153,7 +153,7 @@ function App() {
     checkIfWalletIsConnected();
     getprojectname();
     getownerHandler();
-    customerBalanceHandler()
+    customerBalanceHandler();
   }, [isWalletConnected])
 
   return (
