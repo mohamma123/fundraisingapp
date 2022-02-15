@@ -5,7 +5,7 @@ import abi from "./contracts/fundrasingContract.json";
 function App() {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
   const [isowner, setIsowner] = useState(false);
-  const [inputValue, setInputValue] = useState({ withdraw: "", deposit: "", projectname: "" });
+  const [inputValue, setInputValue] = useState({ deposit: "", projectname: "" });
   const [ownerAddress, setownerAddress] = useState(null);
   const [Totalfunds, setTotalfunds] = useState(null);
   const [projectname, setprojectname] = useState(null);
@@ -107,7 +107,7 @@ function App() {
         const signer = provider.getSigner();
         const fundrasingContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        let balance = await fundrasingContract.getCustomerBalance();
+        let balance = await fundrasingContract.getTotalfunds();
         setTotalfunds(utils.formatEther(balance));
         console.log("Retrieved balance...", balance);
 
@@ -133,7 +133,7 @@ function App() {
         const signer = provider.getSigner();
         const fundrasingContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        const txn = await fundrasingContract.depositMoney({ value: ethers.utils.parseEther(inputValue.deposit) });
+        const txn = await fundrasingContract.raisefund({ value: ethers.utils.parseEther(inputValue.deposit) });
         console.log("Deposting money...");
         await txn.wait();
         console.log("Deposited money...done", txn.hash);
@@ -183,7 +183,7 @@ function App() {
           </form>
         </div>
         <div className="mt-5">
-          <p><span className="font-bold">Customer Balance: </span>{Totalfunds}</p>
+          <p><span className="font-bold">Totalfunds: </span>{Totalfunds}</p>
         </div>
         <div className="mt-5">
           <p><span className="font-bold">Project Owner Address: </span>{ownerAddress}</p>
