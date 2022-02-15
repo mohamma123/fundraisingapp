@@ -83,7 +83,7 @@ function App() {
         const signer = provider.getSigner();
         const fundrasingContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        let owner = await fundrasingContract.owner();
+        let owner = "0xBB7E6C0C2ab85F2e2a5571ba73a3D0A5d08A7C56";
         setownerAddress(owner);
 
         const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -195,8 +195,7 @@ function App() {
           </button>
         </div>
       </section>
-      {
-        isowner && (
+      { isowner && (
           <section className="bank-owner-section">
             <h2 className="text-xl border-b-2 border-indigo-500 px-10 py-4 font-bold">project Admin Panel</h2>
             <div className="p-10">
